@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     <template id="assets_backend" inherit_id="web.assets_backend" name="Direction Backend Assets">
+        <xpath expr="link[last()]" position="after">
+            <t t-set="body_classname" id="ttt" t-value="lang_direction + ' ' + (body_classname or '')"/>
+            <link t-if="lang_direction == 'rtl'" href="/direction_rtl/static/src/css/bootstrap-rtl.min.css" rel="stylesheet" type="text/css"/>
+            <link t-if="lang_direction == 'rtl'" href="/direction_rtl/static/src/css/rtl.css" rel="stylesheet" type="text/css"/>
+        </xpath>
+     </template>
+
+    <template id="assets_frontend" inherit_id="website.assets_frontend" active="True" priority="1">
+        <xpath expr="//link[last()]" position="after">
+            <t t-set="body_classname" id="ttt" t-value="lang_direction + ' ' + (body_classname or '')"/>
+            <link t-if="lang_direction == 'rtl'" href="/direction_rtl/static/src/css/bootstrap-rtl.min.css" rel="stylesheet" type="text/css"/>
+            <link t-if="lang_direction == 'rtl'" href="/direction_rtl/static/src/css/rtl.css" rel="stylesheet" type="text/css"/>
+
+        </xpath>
+    </template>
+</odoo>

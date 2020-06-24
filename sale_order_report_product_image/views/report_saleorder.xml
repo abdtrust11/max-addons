@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_saleorder_document_image" inherit_id="sale.report_saleorder_document">
+
+
+        <!-- <xpath expr="//div[hasclass('container')]" position="attributes">
+            <attribute name="class">body_login</attribute>
+        </xpath> -->
+
+
+        <!-- <xpath expr="//div[@t-attf-class=  #{'col-4' if report_type != 'html' else 'col-sm-7 col-md-5'} ml-auto]" position="before">
+            <div id="background-wrapper" t-attf-style="background-image: url('#{background_src}');"></div>
+        </xpath> -->
+
+
+        <xpath expr="//div[hasclass('page')]/div[2]" position="replace">
+            
+        </xpath>
+        <xpath expr="//div[hasclass('page')]/h2" position="replace">
+            
+        </xpath>
+
+
+
+
+        
+
+        
+        <xpath expr="//table[hasclass('o_main_table')]/thead/tr/th[2]" position="before">
+            <th>Image</th>
+        </xpath>
+        
+        <xpath expr="//tbody[hasclass('sale_tbody')]//t[@t-as='line']/tr/t[@t-if='not line.display_type']/td[2]" position="before">
+            <td>
+                <span t-field="line.product_id.image_small"
+                      t-options="{'widget': 'image', 'class': 'img-rounded'}"/>
+            </td>
+        </xpath>
+
+        
+
+        <xpath expr="//table[hasclass('o_main_table')]/thead/tr[1]" position="attributes">
+            <attribute name="style">
+                border: 2px solid #cccccc;
+
+ 
+                
+            </attribute>
+            <attribute name="class">
+               
+            </attribute>
+
+        </xpath>
+
+
+
+
+
+        
+        <xpath expr="//tbody[hasclass('sale_tbody')]//t[@t-as='line']/tr/t[@t-if='not line.display_type']/td[1]" position="attributes">
+            <attribute name="style">
+                border: 2px solid #cccccc;
+
+ 
+                
+            </attribute>
+            
+        </xpath>
+        <xpath expr="//tbody[hasclass('sale_tbody')]//t[@t-as='line']/tr/t[@t-if='not line.display_type']/td[2]" position="attributes">
+            <attribute name="style">
+                border: 2px solid #cccccc;
+                
+            </attribute>
+            
+        </xpath>
+        <xpath expr="//tbody[hasclass('sale_tbody')]//t[@t-as='line']/tr/t[@t-if='not line.display_type']/td[3]" position="attributes">
+            <attribute name="style">
+               
+                border: 2px solid #cccccc;
+                
+            </attribute>
+            
+        </xpath>
+        <xpath expr="//tbody[hasclass('sale_tbody')]//t[@t-as='line']/tr/t[@t-if='not line.display_type']/td[4]" position="attributes">
+            <attribute name="style">
+                border: 2px solid #cccccc;
+              
+                
+            </attribute>
+            
+        </xpath>
+        <xpath expr="//tbody[hasclass('sale_tbody')]//t[@t-as='line']/tr/t[@t-if='not line.display_type']/td[5]" position="attributes">
+            <attribute name="style">
+                border:2px solid #cccccc;
+               
+                
+            </attribute>
+            
+        </xpath>
+        <xpath expr="//tbody[hasclass('sale_tbody')]//t[@t-as='line']/tr/t[@t-if='not line.display_type']/td[6]" position="attributes">
+            <attribute name="style">
+                border: 2px solid #cccccc;
+               
+            </attribute>
+            
+        </xpath>
+        <xpath expr="//tbody[hasclass('sale_tbody')]//t[@t-as='line']/tr/t[@t-if='not line.display_type']/td[7]" position="attributes">
+            <attribute name="style">
+                border: 2px solid #cccccc;
+              
+                
+            </attribute>
+            
+        </xpath>
+
+        <xpath expr="//div[hasclass('clearfix')]/div[1]" position="replace">
+
+            <div class="text-right">
+
+               <!--   <label for="signatures" string="Signature" class="oe_edit_only" />
+                        <h2>
+                            <field name="signatures" widget="signature" />
+                        </h2> -->
+
+                <span>Signature # </span>
+
+                <span t-field="doc.signatures"  t-options="{'widget': 'image', 'class': 'img-rounded'}"/>
+            </div>
+
+
+        </xpath>
+        
+
+
+
+
+
+
+
+        <xpath expr="//div[hasclass('page')]/div[1]" position="replace">
+            <div style="text-align: right; font-size: 20px;">
+
+                <h2>
+                    <t t-if="not (env.context.get('proforma', False) or is_pro_forma)">
+                        
+                        <span t-if="doc.state not in ['draft','sent']">Order # </span>
+                        <span t-if="doc.state in ['draft','sent']">Quotation # </span>
+                    </t>
+                    <t t-if="env.context.get('proforma', False) or is_pro_forma">
+                        <span>Pro-Forma Invoice # </span>
+                    </t>
+                    <span t-field="doc.name"/>
+                </h2>
+                   <br/> 
+
+            </div>
+
+           
+        
+
+
+            <div style="margin-top:-10px;">
+                <h3 style="text-align: right; font-family: inherit;
+font-weight: bold;
+line-height: 1.2;font-size: 16px;">    \السادة  </h3>
+<div t-field="doc.partner_invoice_id"
+                    t-options='{"widget": "contact", "fields": [ "name"], "no_marker": True, "phone_icons": True}'  style="text-align: right;"/>
+                    <h3 style="text-align: center; font-family: inherit;
+font-weight: bold;
+line-height: 1.2;font-size: 16px;">
+                    . المحترمين </h3>
+                       <br/>      
+                <h3 style="text-align: right;font-family: inherit;
+font-weight: bold;
+line-height: 1.2;font-size: 16px;">السلام عليكم ورحمة الله وبركاته  </h3>
+                <!-- <h3 style="text-align: right;font-family: inherit;
+font-weight: bold;
+line-height: 1.2;font-size: 16px;">نقدم لسعادتكم عرض كاميرا IP بالمواصفات التالية ونامل ان تنال اعجابكم  </h3> -->
+            </div>
+               <br/>
+
+            <div t-if="doc.confirmation_date and doc.state not in ['draft','sent']" class="col-auto mw-100 mb-2" style="margin-top:100px;margin-right: 70px;">
+                    <strong style="font-family: Roboto;margin-top:100px;margin-right: 50px;">Date Ordered:</strong>
+                    <p class="m-0" t-field="doc.confirmation_date"/>
+                </div>
+                <div t-if="doc.date_order and doc.state in ['draft','sent']" class="col-auto mw-100 mb-2" style="margin-top:100px;">
+                    <strong style="font-family: Roboto;margin-top:100px;">Quotation Date:</strong>
+                    <p class="m-0" t-field="doc.date_order"/>
+                </div>
+            
+
+        </xpath>
+
+        <xpath expr="//t[@t-set='address']" position="replace">
+        </xpath>
+
+        
+        <xpath expr="//t[@t-set='information_block']" position="attributes">
+            <attribute name="style">
+                margin-top:20px;
+                width:150px;
+                height:150px;
+                text-align: center;
+                margin-bottom: -160px;
+                
+            </attribute>
+        </xpath>
+
+       
+        
+    </template>
+
+    <template id="external_layoutr" inherit_id="web.external_layout_standard">
+        <xpath expr="//div[hasclass('header')]/div[2]" position="replace">
+        
+
+        </xpath>
+
+        <xpath expr="//div[hasclass('header')]/div[1]" position="replace">
+             
+
+
+            <img class="company_logo" src="/sale_order_report_product_image/static/src/img/cropped-logo26.png" style="margin-top:20px;width:150px;height:150px;float: center;margin-left: 350px;margin-bottom: -160px;border-top-left-radius: 33px;"/>
+           
+        
+   <br/> 
+        </xpath>
+
+        <xpath expr="//div[hasclass('header')]/div/div" position="replace"> 
+        <div class="row mt32 mb32" id="informations" style="margin-top:100px;margin-right: 70px;">
+
+                
+                <div t-if="doc.confirmation_date and doc.state not in ['draft','sent']" class="col-auto mw-100 mb-2" style="margin-top:100px;margin-right: 70px;">
+                    <strong style="margin-top:100px;margin-right: 50px;">Date Ordered:</strong>
+                    <p class="m-0" t-field="doc.confirmation_date"/>
+                </div>
+                <div t-if="doc.date_order and doc.state in ['draft','sent']" class="col-auto mw-100 mb-2" style="margin-top:100px;">
+                    <strong style="margin-top:100px;">Quotation Date:</strong>
+                    <p class="m-0" t-field="doc.date_order"/>
+                </div>
+                
+               
+                
+            </div>   
+            
+            
+        </xpath>
+
+
+           
+        
+    </template>
+
+</odoo>
